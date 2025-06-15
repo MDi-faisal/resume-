@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MDi Institute - Life-Focused Computer & AI Education</title>
+  <title>MDi Institute - Life-Focused AI & Computer Education</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -11,34 +11,43 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
     :root {
-      --primary: #2E8B57;
-      --secondary: #FFC107;
-      --accent: #1e5a8a;
+      --primary: #2E8B57; /* Green */
+      --secondary: #FFC107; /* Yellow */
+      --accent: #dc3545; /* Red */
       --light: #f8f9fa;
       --dark: #212529;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     body {
       font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
-      background-color: #f8fafc;
+      background: linear-gradient(135deg, #f8fafc 0%, #e6f7ee 100%);
       color: var(--dark);
+      overflow-x: hidden;
     }
     
     .hero-pattern {
       background: linear-gradient(135deg, rgba(46, 139, 87, 0.1) 0%, rgba(255, 193, 7, 0.1) 100%);
     }
     
-    .cert-card, .feature-card {
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
+    .cert-card, .feature-card, .course-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
       overflow: hidden;
+      background: white;
+      position: relative;
     }
     
-    .cert-card:hover, .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    .cert-card:hover, .feature-card:hover, .course-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
     }
     
     .gallery-grid {
@@ -51,7 +60,7 @@
       border-radius: 12px;
       overflow: hidden;
       height: 260px;
-      transition: transform 0.3s ease;
+      transition: all 0.4s ease;
       position: relative;
     }
     
@@ -68,7 +77,7 @@
       bottom: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
     
     .gallery-item:hover::after {
@@ -83,8 +92,8 @@
       padding: 16px;
       color: white;
       z-index: 2;
-      transition: bottom 0.3s ease;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      transition: bottom 0.4s ease;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
     }
     
     .gallery-item:hover .gallery-caption {
@@ -93,12 +102,13 @@
     
     .btn-primary {
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       border-radius: 50px;
       font-weight: 600;
       letter-spacing: 0.5px;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
     }
     
     .btn-primary::after {
@@ -110,12 +120,12 @@
       height: 200%;
       background: rgba(255,255,255,0.3);
       transform: rotate(30deg);
-      transition: all 0.6s;
+      transition: all 0.8s;
     }
     
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(46, 139, 87, 0.4);
     }
     
     .btn-primary:hover::after {
@@ -123,95 +133,105 @@
     }
     
     .social-icon {
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
     }
     
     .social-icon:hover {
-      transform: translateY(-5px) scale(1.1);
+      transform: translateY(-5px) scale(1.2);
     }
     
     .section-title {
       position: relative;
       display: inline-block;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
     }
     
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 2px;
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
     }
     
     .floating {
-      animation: floating 6s ease-in-out infinite;
+      animation: floating 8s ease-in-out infinite;
     }
     
     @keyframes floating {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-20px); }
       100% { transform: translateY(0px); }
     }
     
     .counter-box {
-      background: linear-gradient(135deg, rgba(46, 139, 87, 0.1) 0%, rgba(255, 193, 7, 0.1) 100%);
-      border-radius: 12px;
-      padding: 25px;
+      background: linear-gradient(135deg, rgba(46, 139, 87, 0.15) 0%, rgba(255, 193, 7, 0.15) 100%);
+      border-radius: 16px;
+      padding: 30px;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
     
     .counter-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.12);
     }
     
     .counter {
-      font-size: 2.5rem;
-      font-weight: 700;
+      font-size: 3rem;
+      font-weight: 800;
       color: var(--primary);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
     
     .testimonial-card {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      padding: 35px;
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .testimonial-card::before {
       content: """;
       position: absolute;
-      top: -20px;
+      top: -25px;
       left: 20px;
-      font-size: 120px;
+      font-size: 150px;
       color: rgba(46, 139, 87, 0.05);
       font-family: Georgia, serif;
       line-height: 1;
     }
     
     .feature-icon {
-      width: 70px;
-      height: 70px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 20px rgba(46, 139, 87, 0.3);
     }
     
     .wave-divider {
       position: relative;
-      height: 60px;
+      height: 100px;
       overflow: hidden;
     }
     
@@ -224,26 +244,211 @@
     
     .animate-on-scroll {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
     .animate-on-scroll.visible {
       opacity: 1;
       transform: translateY(0);
     }
+    
+    /* Course categories styling */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .category-tab {
+      padding: 15px 30px;
+      margin: 0 10px 15px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      border: 2px solid transparent;
+      backdrop-filter: blur(5px);
+    }
+    
+    .category-tab.active, .category-tab:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(46, 139, 87, 0.3);
+      border-color: white;
+    }
+    
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .course-card {
+      padding: 25px;
+      border-left: 5px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(46, 139, 87, 0.05) 0%, rgba(32, 99, 155, 0.05) 100%);
+      z-index: -1;
+    }
+    
+    .course-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .course-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+    
+    .course-description {
+      color: #555;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    
+    .enroll-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+    
+    .enroll-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(46, 139, 87, 0.3);
+    }
+    
+    /* Hero section enhancements */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      transform: perspective(1000px) rotateY(-5deg);
+    }
+    
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(46, 139, 87, 0.2) 0%, rgba(32, 99, 155, 0.2) 100%);
+    }
+    
+    /* Pulse animation for CTAs */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(46, 139, 87, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(46, 139, 87, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 139, 87, 0); }
+    }
+    
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Course section background */
+    .courses-bg {
+      background: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .courses-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.92);
+    }
+    
+    /* Floating elements */
+    .floating-element {
+      animation: floating 6s ease-in-out infinite;
+      animation-delay: calc(var(--delay) * 0.5s);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .category-tab {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        margin: 0 0 15px;
+      }
+    }
+    
+    /* Mission section enhancements */
+    .mission-card {
+      border-top: 4px solid var(--secondary);
+    }
+    
+    /* Certificate enhancements */
+    .cert-tag {
+      background: linear-gradient(135deg, var(--secondary) 0%, #ff9800 100%);
+    }
+    
+    /* Testimonial enhancements */
+    .testimonial-card {
+      border-bottom: 4px solid var(--accent);
+    }
   </style>
 </head>
 <body class="bg-gray-50">
   <!-- Navigation -->
-  <nav class="bg-white shadow-md py-4 px-6 flex flex-col md:flex-row justify-between items-center sticky top-0 z-50">
+  <nav class="bg-white shadow-lg py-4 px-6 flex flex-col md:flex-row justify-between items-center sticky top-0 z-50">
     <div class="flex items-center mb-4 md:mb-0">
       <img src="https://raw.githubusercontent.com/MDi-faisal/resume-/main/mdi-institute-logo.png" 
            alt="MDi Logo" 
-           class="h-14 w-14 mr-3">
+           class="h-16 w-16 mr-3">
       <div>
         <h1 class="text-xl font-bold text-green-800">MDi Institute</h1>
-        <p class="text-sm text-gray-600">Computer & AI Education</p>
+        <p class="text-sm text-gray-600">AI & Computer Education</p>
       </div>
     </div>
     
@@ -254,23 +459,28 @@
       <a href="#certificates" class="text-gray-700 hover:text-green-700 font-medium">Certificates</a>
       <a href="#gallery" class="text-gray-700 hover:text-green-700 font-medium">Gallery</a>
       <a href="#testimonials" class="text-gray-700 hover:text-green-700 font-medium">Testimonials</a>
-      <a href="#admission" class="btn-primary text-white px-5 py-2 font-medium">Apply Now</a>
+      <a href="#admission" class="btn-primary text-white px-6 py-3 font-medium pulse-animation">Apply Now</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero-pattern py-20 px-4">
-    <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center">
+  <section class="hero-pattern py-24 px-4 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full z-0">
+      <div class="absolute top-10% left-10% w-40 h-40 bg-green-300 rounded-full filter blur-3xl opacity-20"></div>
+      <div class="absolute bottom-20% right-10% w-60 h-60 bg-yellow-300 rounded-full filter blur-3xl opacity-20"></div>
+    </div>
+    
+    <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center relative z-10">
       <div class="md:w-1/2 mb-10 md:mb-0 px-4 animate-on-scroll">
         <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
-          <span class="text-green-700">Life-Focused Education</span> for Youth
+          <span class="text-green-700">Life-Focused Education</span> for Tomorrow's Leaders
         </h1>
         <p class="text-xl mb-8 text-gray-700 leading-relaxed">
-          Empowering rural youth through cutting-edge AI education, ethical values, and practical skills that transform lives.
+          Empowering youth with cutting-edge AI education, Islamic values, and practical skills to transform lives and communities.
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-          <a href="#admission" class="btn-primary text-white px-8 py-4 text-center font-semibold text-lg">
-            Apply Now <i class="fas fa-arrow-right ml-2"></i>
+          <a href="#courses" class="btn-primary text-white px-8 py-4 text-center font-semibold text-lg">
+            Explore Courses <i class="fas fa-arrow-right ml-2"></i>
           </a>
           <a href="https://wa.me/923041391396" 
              class="bg-white text-green-700 border-2 border-green-700 px-8 py-4 rounded-full font-semibold text-center hover:bg-green-50 transition-all">
@@ -281,27 +491,268 @@
       
       <div class="md:w-1/2 flex justify-center animate-on-scroll">
         <div class="relative floating">
-          <img src="https://raw.githubusercontent.com/MDi-faisal/resume-/main/group-photo-with%20students.jpg" 
-               alt="MDi Students" 
-               class="rounded-xl shadow-xl w-full max-w-md border-8 border-white transform rotate-3">
-          <div class="absolute -bottom-4 -right-4 bg-white p-2 rounded-lg shadow-md transform -rotate-3">
+          <div class="hero-image">
+            <img src="https://raw.githubusercontent.com/MDi-faisal/resume-/main/group-photo-with%20students.jpg" 
+                 alt="MDi Students" 
+                 class="rounded-xl w-full max-w-md">
+          </div>
+          <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-lg shadow-xl transform -rotate-3">
             <img src="https://raw.githubusercontent.com/MDi-faisal/resume-/main/happy-students.jpg" 
                  alt="Students Learning" 
-                 class="w-24 h-24 rounded-lg object-cover">
+                 class="w-24 h-24 rounded-lg object-cover border-2 border-white">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Wave Divider -->
-  <div class="wave-divider bg-white">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#2E8B57"></path>
-      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#2E8B57"></path>
-      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#2E8B57"></path>
-    </svg>
-  </div>
+  <!-- Stats Section -->
+  <section class="py-16 bg-green-700 text-white">
+    <div class="container mx-auto max-w-6xl px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="counter-box">
+          <div class="counter">300+</div>
+          <p class="font-medium">Students Trained</p>
+        </div>
+        
+        <div class="counter-box">
+          <div class="counter">25+</div>
+          <p class="font-medium">Courses Offered</p>
+        </div>
+        
+        <div class="counter-box">
+          <div class="counter">98%</div>
+          <p class="font-medium">Satisfaction Rate</p>
+        </div>
+        
+        <div class="counter-box">
+          <div class="counter">15+</div>
+          <p class="font-medium">Community Events</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="courses" class="py-20 courses-bg relative">
+    <div class="container mx-auto max-w-6xl px-4 relative z-10">
+      <h2 class="text-3xl font-bold text-center mb-4 text-gray-800 section-title animate-on-scroll">Our Comprehensive Courses</h2>
+      <p class="text-center text-gray-600 mb-16 max-w-3xl mx-auto animate-on-scroll">
+        Transformative programs that combine technical excellence with Islamic values and life skills
+      </p>
+      
+      <div class="category-tabs">
+        <div class="category-tab active" data-category="basic">Basic & Intermediate</div>
+        <div class="category-tab" data-category="advanced">Advanced AI</div>
+        <div class="category-tab" data-category="islamic">Islamic Studies</div>
+        <div class="category-tab" data-category="skills">Life Skills</div>
+      </div>
+      
+      <div class="courses-grid">
+        <!-- Basic & Intermediate Courses -->
+        <div class="course-card animate-on-scroll" data-category="basic">
+          <div class="course-icon">
+            <i class="fas fa-keyboard"></i>
+          </div>
+          <h3 class="course-title">Computer Basics & Typing</h3>
+          <p class="course-description">Master computer fundamentals, keyboard proficiency, and essential digital skills.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="basic">
+          <div class="course-icon">
+            <i class="fas fa-file-excel"></i>
+          </div>
+          <h3 class="course-title">MS Office & Productivity</h3>
+          <p class="course-description">Excel in Word, Excel, PowerPoint and boost your productivity skills.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="basic">
+          <div class="course-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="course-title">Internet & Digital Literacy</h3>
+          <p class="course-description">Navigate the digital world safely and effectively with essential online skills.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="basic">
+          <div class="course-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="course-title">Programming with C++</h3>
+          <p class="course-description">Learn core programming concepts and develop problem-solving skills with C++.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <!-- Advanced AI Courses -->
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="course-title">AI Fundamentals</h3>
+          <p class="course-description">Introduction to AI concepts, history, types, and real-world applications.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3 class="course-title">Machine Learning & Neural Networks</h3>
+          <p class="course-description">Deep dive into ML algorithms, neural networks, and deep learning techniques.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="course-title">AI Chatbots & Language Models</h3>
+          <p class="course-description">Build and deploy intelligent chatbots using advanced language models.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="course-title">AI for Productivity & Automation</h3>
+          <p class="course-description">Leverage AI to automate tasks and enhance personal and professional productivity.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="course-title">AI for Education</h3>
+          <p class="course-description">Transform teaching and learning with AI-powered educational tools.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="course-title">AI-Powered Website Development</h3>
+          <p class="course-description">Create stunning websites using AI tools and modern development techniques.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3 class="course-title">Video Generation & Editing with AI</h3>
+          <p class="course-description">Master AI tools for professional video creation and editing.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-music"></i>
+          </div>
+          <h3 class="course-title">Audio Generation & Music with AI</h3>
+          <p class="course-description">Create and manipulate audio content using artificial intelligence.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3 class="course-title">AI in Business & Entrepreneurship</h3>
+          <p class="course-description">Leverage AI for business innovation and entrepreneurial success.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-stethoscope"></i>
+          </div>
+          <h3 class="course-title">AI in Healthcare</h3>
+          <p class="course-description">Explore AI applications in medical diagnosis and healthcare innovation.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="advanced">
+          <div class="course-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3 class="course-title">Prompt Engineering</h3>
+          <p class="course-description">Master the art of crafting effective prompts for AI systems.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <!-- Islamic Studies -->
+        <div class="course-card animate-on-scroll" data-category="islamic">
+          <div class="course-icon">
+            <i class="fas fa-book-quran"></i>
+          </div>
+          <h3 class="course-title">Islamic Studies & Quran</h3>
+          <p class="course-description">Deepen your understanding of Islamic principles and Quranic teachings.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="islamic">
+          <div class="course-icon">
+            <i class="fas fa-mosque"></i>
+          </div>
+          <h3 class="course-title">Sunnah & Seerah</h3>
+          <p class="course-description">Study the life of Prophet Muhammad (PBUH) and Islamic traditions.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="islamic">
+          <div class="course-icon">
+            <i class="fas fa-hands-praying"></i>
+          </div>
+          <h3 class="course-title">AI & Islamic Ethics</h3>
+          <p class="course-description">Explore the ethical dimensions of AI from an Islamic perspective.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <!-- Life Skills -->
+        <div class="course-card animate-on-scroll" data-category="skills">
+          <div class="course-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3 class="course-title">Communication & Public Speaking</h3>
+          <p class="course-description">Develop confidence and effectiveness in communication and presentations.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="skills">
+          <div class="course-icon">
+            <i class="fas fa-first-aid"></i>
+          </div>
+          <h3 class="course-title">First Aid Basics</h3>
+          <p class="course-description">Learn essential first aid skills for emergencies and everyday situations.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="skills">
+          <div class="course-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h3 class="course-title">Online Application Process</h3>
+          <p class="course-description">Master the skills needed for successful online applications and submissions.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+        
+        <div class="course-card animate-on-scroll" data-category="skills">
+          <div class="course-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3 class="course-title">Networking & Professional Relationships</h3>
+          <p class="course-description">Build meaningful professional connections and advance your career.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1PQZkpMS0y1XaiZpB9FUzM95ipuCqiEOve9p9vA4G8VKdVA/viewform" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- About Section -->
   <section id="about" class="py-16 bg-white">
@@ -354,7 +805,7 @@
       <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 section-title animate-on-scroll">Our Mission & Vision</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll">
-        <div class="bg-white p-8 rounded-2xl shadow-md">
+        <div class="bg-white p-8 rounded-2xl shadow-md mission-card">
           <div class="feature-icon mx-auto">
             <i class="fas fa-bullseye text-white text-2xl"></i>
           </div>
@@ -364,7 +815,7 @@
           </p>
         </div>
         
-        <div class="bg-white p-8 rounded-2xl shadow-md">
+        <div class="bg-white p-8 rounded-2xl shadow-md mission-card">
           <div class="feature-icon mx-auto">
             <i class="fas fa-eye text-white text-2xl"></i>
           </div>
@@ -412,33 +863,6 @@
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="py-16 bg-green-700 text-white">
-    <div class="container mx-auto max-w-6xl px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="counter-box">
-          <div class="counter">300+</div>
-          <p class="font-medium">Students Trained</p>
-        </div>
-        
-        <div class="counter-box">
-          <div class="counter">15+</div>
-          <p class="font-medium">Courses Offered</p>
-        </div>
-        
-        <div class="counter-box">
-          <div class="counter">98%</div>
-          <p class="font-medium">Satisfaction Rate</p>
-        </div>
-        
-        <div class="counter-box">
-          <div class="counter">12+</div>
-          <p class="font-medium">Community Events</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Certificates Section -->
   <section id="certificates" class="py-16 bg-white">
     <div class="container mx-auto max-w-6xl px-4">
@@ -459,7 +883,7 @@
                 <h3 class="font-bold text-xl text-green-800 mb-2">Google AI Essentials</h3>
                 <p class="text-gray-600 mb-4">Specialization in AI foundations</p>
               </div>
-              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium cert-tag">
                 Verified
               </div>
             </div>
@@ -482,7 +906,7 @@
                 <h3 class="font-bold text-xl text-green-800 mb-2">Maximize Productivity</h3>
                 <p class="text-gray-600 mb-4">AI-enhanced workflow techniques</p>
               </div>
-              <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+              <div class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium cert-tag">
                 Productivity
               </div>
             </div>
@@ -505,7 +929,7 @@
                 <h3 class="font-bold text-xl text-green-800 mb-2">Art of Prompting</h3>
                 <p class="text-gray-600 mb-4">Mastering AI communication</p>
               </div>
-              <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+              <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium cert-tag">
                 AI Skills
               </div>
             </div>
@@ -528,7 +952,7 @@
                 <h3 class="font-bold text-xl text-green-800 mb-2">Responsible AI</h3>
                 <p class="text-gray-600 mb-4">Ethical AI implementation</p>
               </div>
-              <div class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+              <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium cert-tag">
                 Ethics
               </div>
             </div>
@@ -551,7 +975,7 @@
                 <h3 class="font-bold text-xl text-green-800 mb-2">Stay Ahead of AI</h3>
                 <p class="text-gray-600 mb-4">Future-proof AI strategies</p>
               </div>
-              <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
+              <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium cert-tag">
                 Strategy
               </div>
             </div>
@@ -574,7 +998,7 @@
                 <h3 class="font-bold text-xl text-green-800 mb-2">Introduction to AI</h3>
                 <p class="text-gray-600 mb-4">Foundational AI concepts</p>
               </div>
-              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium cert-tag">
                 Foundation
               </div>
             </div>
@@ -887,6 +1311,26 @@
       };
       
       updateCount();
+    });
+    
+    // Course category filtering
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Update active tab
+        document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        const category = this.getAttribute('data-category');
+        
+        // Show/hide courses
+        document.querySelectorAll('.course-card').forEach(card => {
+          if(category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
     });
   </script>
 </body>
